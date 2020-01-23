@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="refresh" content="5" >
+	<title>client</title>
+</head>
+<style type="text/css">
+	.background{
+		background-color: #401C3E;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		margin:0;
+		padding: 0;
+		overflow: hidden;
+	}
+	.foreground{
+		background-color: white;
+		min-width: 95vw;
+		min-height: 95vh;
+		border-radius: 50px;
+		padding: 0;
+		margin: 0;
+		margin-top: 2.5vh;
+		display: flex;
+
+	}
+	.rightside{
+		width: 70%;
+		height: 100%;
+		/*position: relative;*/
+		/*top: 0;*/
+		/*right: 0;*/
+		border-radius: 50px;
+		background-color: #FFF9F0;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+	.sliderbox{
+		width: 80%;
+		height: 100px;
+		/*background-color: red;*/
+		margin-top: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.bad , .good{
+		width: 100px;
+		height: 100px;
+		margin: 0 20px;
+	}
+	.slider-outer{
+		width: 700px;
+		height: 20px;
+		border-radius: 50px;
+		background-color: white;
+	}
+	.slider-inner{
+		/*position: absolute;*/
+		width: 350px;
+		height: 20px;
+		border-radius: 50px;
+		background-color: #7ED7FF;
+	}
+	.rating{
+		font-family: "Arial";
+		font-size: 40px;
+		font-weight: bold;
+		color: #132645;
+		margin-top: 10px;
+	}
+	.text{
+		font-family: "Arial";
+		font-size: 40px;
+		font-weight: bold;
+		color: #132645;
+		margin-top: 150px;
+		max-width: 700px;
+		text-align: center;
+	}
+	.camera{
+		background-color: transparent;
+		width: 500px;
+		height: 500px;
+		margin: 200px 20px;
+	}
+	#videoElement{
+		width: 100%;
+		height: auto;
+		/*border-radius: 25px;*/
+	}
+</style>
+<body class="background">
+
+	<div class="foreground">
+		
+		<div class="rightside">
+			<div class="sliderbox">
+				<img src="/static/emoji.png" class="bad">
+
+				<div class="slider-outer">
+					<div class="slider-inner">
+						
+					</div>
+				</div>
+
+				<img src="/static/excited.png" class="good">
+			</div>
+			<p class="rating">5/10</p>
+			<p class="text">Rate this product by tasting it. Just keep looking at the camera.</p>
+			<p>{{ LSTM }}</p>
+			<p>{{ CNN }}</p>
+		</div>
+
+		<div class="camera">
+			<video autoplay="true" id="videoElement"></video>
+		</div>
+	</div>
+
+<script type="text/javascript">
+	var video = document.querySelector("#videoElement");
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+
+</script>
+
+</body>
+</html>
